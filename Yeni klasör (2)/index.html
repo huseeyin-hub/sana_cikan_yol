@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sana Çıkan Yol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Arka plan ve efekt katmanları -->
+        <div id="background-layer" class="bg-night"></div>
+        <div id="particle-layer"></div>
+
+        <!-- Bildirim Alanı -->
+        <div id="notification-box" class="hidden"></div>
+
+        <!-- Ana Menü -->
+        <div id="main-menu" class="screen">
+            <h1 class="game-title">Sana Çıkan Yol</h1>
+            <p class="subtitle">Mesafeleri aşan bir hikâye...</p>
+            <div class="menu-buttons">
+                <button id="btn-new-game" class="btn">Yeni Hikâye</button>
+                <button id="btn-continue" class="btn hidden">Kaldığın Yerden Devam Et</button>
+                <button id="btn-reset" class="btn hidden">Anıları Sıfırla</button>
+            </div>
+            <button id="btn-audio-toggle" class="icon-btn">Ses: Kapalı 🔇</button>
+        </div>
+
+        <!-- Hikaye Ekranı -->
+        <div id="story-screen" class="screen hidden">
+            <div id="visual-area">
+                <!-- Sahneye göre görseller buraya eklenebilir -->
+            </div>
+            <div id="dialogue-container">
+                <p id="dialogue-text"></p>
+                <div id="choices-container"></div>
+            </div>
+        </div>
+
+        <!-- Mini Oyun Ekranı -->
+        <div id="minigame-screen" class="screen hidden">
+            <h2 id="minigame-title">Mini Oyun</h2>
+            <p id="minigame-instruction">Talimatlar...</p>
+            <div id="minigame-area"></div>
+            <button id="btn-minigame-skip" class="btn hidden">Geç (Zorlandıysan)</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+:root {
+    --color-dark: #0f172a;
+    --color-primary: #3b0764;
+    --color-secondary: #86198f;
+    --color-accent: #f472b6;
+    --color-text: #f8fafc;
+    --color-box: rgba(15, 23, 42, 0.85);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #000;
+    color: var(--color-text);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 900px;
+    position: relative;
+    background-color: var(--color-dark);
+    box-shadow: 0 0 50px rgba(134, 25, 143, 0.3);
+    overflow: hidden;
+}
+
+/* Arka Planlar */
+#background-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    transition: background 2s ease-in-out;
+    z-index: 1;
+}
+
+.bg-night { background: linear-gradient(to bottom, #020617, #1e1b4b, #312e81); }
+.bg-forest { background: linear-gradient(to bottom, #064e3b, #065f46, #0f172a); }
+.bg-sunset { background: linear-gradient(to bottom, #7c2d12, #9f1239, #4c1d95); }
+.bg-light { background: linear-gradient(to bottom, #fdf4ff, #fae8ff, #f3e8ff); color: #333;}
+
+/* Parçacık Efektleri */
+#particle-layer {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: floatDown linear infinite;
+}
+
+@keyframes floatDown {
+    0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
+}
+
+/* Ekran Yönetimi */
+.screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ana Menü */
+.game-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #f472b6, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(244, 114, 182, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #cbd5e1;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+}
+
+.btn {
+    padding: 15px 20px;
+    border: 2px solid var(--color-secondary);
+    background: rgba(88, 28, 135, 0.5);
+    color: white;
+    font-size: 1.1rem;
+    font-family: inherit;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.btn:hover, .btn:active {
+    background: var(--color-secondary);
+    transform: scale(1.02);
+    box-shadow: 0 0 15px var(--color-accent);
+}
+
+.icon-btn {
+    margin-top: 30px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Hikaye Ekranı */
+#story-screen {
+    justify-content: flex-end;
+    padding-bottom: 20px;
+}
+
+#dialogue-container {
+    width: 90%;
+    background: var(--color-box);
+    border: 1px solid var(--color-secondary);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 250px;
+}
+
+#dialogue-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    min-height: 80px;
+}
+
+#choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-btn {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.choice-btn:hover {
+    background: var(--color-accent);
+    color: var(--color-dark);
+}
+
+/* Bildirim */
+#notification-box {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(244, 114, 182, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    z-index: 100;
+    transition: opacity 0.3s;
+}
+
+/* Mini Oyunlar */
+#minigame-screen {
+    background: rgba(15, 23, 42, 0.95);
+}
+#minigame-title { margin-bottom: 10px; color: var(--color-accent); }
+#minigame-instruction { margin-bottom: 30px; text-align: center; width: 80%; }
+#minigame-area { width: 100%; height: 300px; position: relative; display: flex; justify-content: center; align-items: center; }
+
+/* Yıldız Oyunu */
+.star-dot {
+    position: absolute; width: 20px; height: 20px;
+    background: white; border-radius: 50%;
+    box-shadow: 0 0 10px white; cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+}
+.star-dot.active { background: var(--color-accent); box-shadow: 0 0 20px var(--color-accent); transform: scale(1.3); }
+
+/* Hafıza Oyunu */
+.memory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 20px; }
+.memory-card {
+    width: 70px; height: 70px; background: var(--color-secondary);
+    border-radius: 8px; cursor: pointer; display: flex;
+    justify-content: center; align-items: center; font-size: 2rem;
+    transition: transform 0.3s;
+}
+.memory-card.flipped { background: var(--color-text); transform: rotateY(180deg); }
+
+/* Kalp Ritmi Oyunu */
+.rhythm-bar-container { width: 80%; height: 30px; background: #333; border-radius: 15px; position: relative; overflow: hidden; }
+.rhythm-target { position: absolute; left: 40%; width: 20%; height: 100%; background: rgba(244, 114, 182, 0.5); }
+.rhythm-cursor { position: absolute; left: 0; width: 5px; height: 100%; background: white; box-shadow: 0 0 10px white; }
+.rhythm-btn { margin-top: 30px; padding: 15px 40px; font-size: 1.2rem; border-radius: 30px; background: var(--color-accent); border: none; color: white; cursor: pointer;}
